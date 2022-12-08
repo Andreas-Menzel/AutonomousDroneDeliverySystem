@@ -41,7 +41,39 @@ take off, hold a gps-location, fly small missions (follow gps-route) and land.
 
 The drone does **not** have to perform a precision landing.
 
-### 03 - Drone Control via Raspberry Pi
+### 03 - Semi-automatic freight pick-up and drop-off
+
+**Status:** *pending*
+
+**Main Goal:** Create a mechanism that can securely attach a cargo container to
+the drone and safely release it.
+
+After compelting this milestone, the drone should have a "cargo area" and a
+mechanism to securely attach a cargo container to it. It is ok if the drone and
+the cargo container have to be precisely positioned (+- 5mm in each direction).
+The mechanism should allow a mid-flight drop-off.
+
+The system can be an Arduino controlled prototype. The Arduino may be removed
+and the mechanism may be controlled via the Raspberry Pi later.
+
+---
+
+**The system (drone + GCS) does now fulfill the basic cargo pick-up, transport**
+**and drop-off requirements. The cargo container attachement- / release-**
+**sequences, as well as the gps-waypoint missions, can be initiated manually.**
+
+---
+
+### 04 - Authentications and Verifications
+
+**Status:** *pending*
+
+**Goal:** Authentications and verifications of the drone, terminal and bookings
+through C-Chain.
+
+**The content of this milestone is still to be discussed.**
+
+### optional? - Drone Control via Raspberry Pi
 
 **Status:** *pending*
 
@@ -56,16 +88,3 @@ be controlled, so that it ...
 2. lifts off,
 3. flies left to right and
 4. flies to a gps-location
-
-### 04 - Semi-automatic freight pick-up and drop-off
-
-**Status:** *pending*
-
-**Main Goal:** Create a mechanism that can securely attach a cargo container to
-the drone and safely release it.
-
-After compelting this milestone, the drone should have a "cargo area" and a
-mechanism to securely attach a cargo container to it. It is ok if the drone and
-the cargo container have to be precisely positioned (+- 5mm in each direction).
-The mechanism should allow a mid-flight drop-off. The pick-up and drop-off
-procedures should be controlled via the Raspberry Pi.
