@@ -29,3 +29,43 @@ wind or other difficulties.
 The drone does **not** have to use GPS to hold the current position or fly
 waypoint missions. Other autonomous manouvres like auto-lift-off or auto-landing
 are not part of this milestone.
+
+### 02 - Basic Autonomous Flying
+
+**Status:** *pending*
+
+**Main Goal:** Incorporate GPS module and fly small autonomous missions.
+
+After completing this milestone, the drone should be able to autonomously
+take off, hold a gps-location, fly small missions (follow gps-route) and land.
+
+The drone does **not** have to perform a precision landing.
+
+### 03 - Drone Control via Raspberry Pi
+
+**Status:** *pending*
+
+**Main Goal:** Establish a communication link between the flight controller and
+the Raspberry Pi. Execute simple (flight) routines with the Raspberry Pi.
+
+After completing this milestone, the Raspberry Pi should be able to send (basic)
+commands to the flight controller (and read back the results). The drone should
+be controlled, so that it ...
+
+1. can be (dis-)armed,
+2. lifts off,
+3. flies left to right and
+4. flies to a gps-location
+
+### 04 - Semi-automatic freight pick-up and drop-off
+
+**Status:** *pending*
+
+**Main Goal:** Create a mechanism that can securely attach a cargo container to
+the drone and safely release it.
+
+After compelting this milestone, the drone should have a "cargo area" and a
+mechanism to securely attach a cargo container to it. It is ok if the drone and
+the cargo container have to be precisely positioned (+- 5mm in each direction).
+The mechanism should allow a mid-flight drop-off. The pick-up and drop-off
+procedures should be controlled via the Raspberry Pi.
