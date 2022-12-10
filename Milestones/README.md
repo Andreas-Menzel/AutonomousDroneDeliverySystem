@@ -96,7 +96,7 @@ be controlled, so that it ...
 
 **Status:** *pending*
 
-**Mai Goal:** Precisely land the drone on a maker.
+**Main Goal:** Precisely land the drone on a marker.
 
 After completing this milestone, the drone should be able to precisely land on
 a marker. This marker is later to be placed on the cargo station for further
