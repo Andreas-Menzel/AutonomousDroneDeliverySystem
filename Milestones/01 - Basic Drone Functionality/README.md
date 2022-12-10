@@ -55,31 +55,43 @@ Here is a list of different configurations:
 
 Currently top-choice: many sensors, "professional" hardware.
 
-**Price:** approx. 190€
+**Price:** approx. 323€ - 353€
 
-- Flight controller (190€): "Qio-Tek Zealot H743" - standard edition with
+- Flight controller (189€ + 15€ shipping): "Qio-Tek Zealot H743" - standard edition with
   "u-block M10 GPS" gps module
     - Dimensions & weight: 65mm x 42mm x 25mm - 65g
     - buy here: [https://smartfleet.systems/product/zealot-h743/](https://smartfleet.systems/product/zealot-h743/)
+- Range finder (30€ - 60€): "TFmini Plus" or "TF-Luna"
+    - buy here: [https://www.amazon.de/youyeetoo-Single-Point-Measurement-Distance-Industrial/dp/B0823N72V8/](https://www.amazon.de/youyeetoo-Single-Point-Measurement-Distance-Industrial/dp/B0823N72V8/)
+    - buy here: [https://www.amazon.de/youyeetoo-Single-Point-Measurement-Distance-Industrial/dp/B088BBJ9SQ/](https://www.amazon.de/youyeetoo-Single-Point-Measurement-Distance-Industrial/dp/B088BBJ9SQ/)
+- Telementry link (56€ + 30€ shipping): "SiK Telemetry Radio V3"
+    - buy here: [https://shop.holybro.com/sik-telemetry-radio-v3_p1103.html](https://shop.holybro.com/sik-telemetry-radio-v3_p1103.html)
+- 20x foam pads (3€; shipping included in telemetry module)
+    - buy here: [https://shop.holybro.com/foam-pads-20pcs_p1168.html](https://shop.holybro.com/foam-pads-20pcs_p1168.html)
 
 PROS
 
-- many sensors built-in with multiple redundancy
-    - 3x gyroscope + accelerometer
-    - 2x barometer
-    - 1x compass
-- internally vibration dampened
-- temperature-controlled IMUs
-- integrated AT7456E OSD chip
-- sturdy aluminium case
+- Qio-Tek Zealot H743
+    - Many sensors built-in with multiple redundancy
+        - 3x gyroscope + accelerometer
+        - 2x barometer
+        - 1x compass
+    - Internally vibration dampened
+    - Temperature-controlled IMUs
+    - Integrated AT7456E OSD chip
+    - Sturdy aluminium case
+- SiK Telemetry Radio V3
+    - Can have good range. Especially better than WiFi.
 
 CONS
 
-- (closed hardware)
+- Qio-Tek Zealot H743
+    - (closed hardware)
 
 #### Configuration 2
 
 Good configuration: many tutorials and good support for flight controller.
+(not complete)
 
 **Price:**
 
@@ -101,6 +113,7 @@ CONS
 Also an option. The flight controller was suggested by a user on the ArduPilot
 forum:
 [https://discuss.ardupilot.org/t/what-flight-controller-to-use-for-an-autonomous-cargo-pick-up-and-drop-off-drone/93981](https://discuss.ardupilot.org/t/what-flight-controller-to-use-for-an-autonomous-cargo-pick-up-and-drop-off-drone/93981)
+(not complete)
 
 **Price:** approx: 158€
 
