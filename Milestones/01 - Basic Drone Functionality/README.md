@@ -37,11 +37,35 @@ are not part of this milestone.
 
 ## 2. Select & buy hardware
 
-Pre-assembled drone vs. DIY version (pros & cons)...
-*<span style="color: orange">More information / Better explanations coming soon.</span>*
+There are two main approaches to getting the drone hardware for this project.
 
-I already have many components...
-*<span style="color: orange">More information / Better explanations coming soon.</span>*
+1. Buy a pre-built, well tuned drone, or
+2. choose the individual components and build a "DIY-drone".
+
+Option 1 has the advantage of having a well tuned drone that should be able to
+fly simple (and advanced) manouvers out of the box. There are many different
+models to choose from, e.g.
+*<span style="color: orange">More information</span>*
+
+When choosing option 2, the drone can often be more easily modified and
+extended. The price of a DIY-drone is also often (much) less, which is great;
+especially for projects like this (student project with little budget).
+Establishing a link between the drone and an external (but onboard) computer
+can be easier when building the drone from scratch and choosing a suitable
+flight controller. This is especially important in this project, because in the
+end, the drone should be able to automatically start a mission when a
+cargo-transport-mission is booked via an online service.
+
+To simplify the process of connecting the drone to the on-board computer, to
+money and to make this project more easily modifiable, I decided upon option 2,
+the DIY-drone.
+
+Depending on the drone's requirements - in this project mainly payload and
+stability - there are many different hardware components from which one
+could choose. I already bought some drone hardware for a previous project I
+didn't start (yet). (Re)using the hardware I already have, reduces the total
+cost of this project. Since the hardware should pretty much result in a drone
+according to this project's requirements, this is the way to go.
 
 ### Choosing the drone's base-hardware
 
