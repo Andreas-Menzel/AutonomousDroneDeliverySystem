@@ -2,6 +2,8 @@
 
 The development of this project is split up into multiple parts ('milestones').
 Generally one milestone needs to be finished before starting the next one.
+Some milestones can be worked on simultaneously, depending on the temperature
+and weather.
 
 
 ## Overview
@@ -51,10 +53,11 @@ the drone and safely release it.
 After compelting this milestone, the drone should have a "cargo area" and a
 mechanism to securely attach a cargo container to it. It is ok if the drone and
 the cargo container have to be precisely positioned (+- 5mm in each direction).
-The mechanism should allow a mid-flight drop-off.
+The mechanism should allow for a mid-flight drop-off.
 
 The system can be an Arduino controlled prototype. The Arduino may be removed
-and the mechanism may be controlled via the Raspberry Pi later.
+and the mechanism may be controlled via the Raspberry Pi or the flight
+controller later.
 
 ---
 
@@ -73,7 +76,7 @@ through C-Chain.
 
 **The content of this milestone is still to be discussed.**
 
-### optional? - Drone Control via Raspberry Pi
+### optional? - 05 - Drone Control via Raspberry Pi
 
 **Status:** *pending*
 
@@ -88,3 +91,36 @@ be controlled, so that it ...
 2. lifts off,
 3. flies left to right and
 4. flies to a gps-location
+
+### optional? - 06 - Precision Landing
+
+**Status:** *pending*
+
+**Mai Goal:** Precisely land the drone on a maker.
+
+After completing this milestone, the drone should be able to precisely land on
+a marker. This marker is later to be placed on the cargo station for further
+development for the cargo pick-up and drop-off routines.
+
+### optional? - 07 - Fully Autonomous Cargo Pick-Up and Drop-Off
+
+**Status:** *pending*
+
+**Main Goal:** Fully autonomously attach and detach a cargo container to / from
+the drone.
+
+After completing this milestone, the cargo station should have a mechanism that
+either brings the cargo container to the drone, or vice versa. The cargo
+container should then be fully autonomously attached / detached to / from the
+drone after an autonomous landing.
+
+### optional? - 08 - Fully Autonomous Pick-Up, Transport and Drop-Off Routine
+
+**Status:** *pending*
+
+**Main Goal:** Connect the autonomous pick-up, transport, landing and drop-off
+sequences.
+
+After completing this milestone, the drone should be able to fully autonomously
+land, pick-up a cargo container, lift off, fly to the next cargo station, land
+and drop the cargo container off.
