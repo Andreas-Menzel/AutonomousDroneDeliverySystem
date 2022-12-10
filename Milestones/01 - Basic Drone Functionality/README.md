@@ -15,13 +15,13 @@ are not part of this milestone.
 
 **To achieve the main goal, the following tasks have to be finished:**
 
-1. Select & buy hardware
+1. Select software
+    - ... for the drone's flight controller
+    - ... for the Ground Control Station (GCS)
+2. Select & buy hardware
     - Basic drone hardware (frame, motors, ESCs, battery, transmitter &
       receiver, ...)
     - Flight controller
-2. Select software
-    - ... for the drone's flight controller
-    - ... for the Ground Control Station (GCS)
 3. Build drone
     - Build hardware
     - Flash firmware to flight controller
@@ -31,7 +31,11 @@ are not part of this milestone.
     - Tune PID values of the flight controller
     - Optimize antenna positions at the ground station and on the drone
 
-## 1. Select & buy hardware
+## 1. Select software
+
+***TODO***
+
+## 2. Select & buy hardware
 
 Pre-assembled drone vs. DIY version (pros & cons)...
 *<span style="color: orange">More information / Better explanations coming soon.</span>*
@@ -39,17 +43,38 @@ Pre-assembled drone vs. DIY version (pros & cons)...
 I already have many components...
 *<span style="color: orange">More information / Better explanations coming soon.</span>*
 
-### Choosing the drone's sceleton and muscles
+### Choosing the drone's base-hardware
 
-This motors, ESCs, frame, ... because ...
-*<span style="color: orange">More information / Better explanations coming soon.</span>*
+As stated before, I already had some drone hardware. The following list contains
+the drone's base-hardware, meaning everything that does not calculate or measure
+something.
+
+- **Frame:** Carbon fiber quadcopter frame ("WTOTOY")
+    - Size: approx. 45cm from motor to motor
+- **Prototyping frame:** DIY: aluminum tubes + 3D-printed parts
+    - Size: approx. 39cm from motor to motor
+    - Little bit heavier than the main frame
+    - Sturdier than the main frame
+- **Motors:** 4x "EMAX MT2216-810KV"
+    - 2x CW-threaded
+    - 2x CCW-threaded
+- **Electronic Speed Controllers (ESC)**: 4x "EMAX BLHeli 30A"
+- **Propellers:** 4x (+ spare) 1045 plastic propellers
+    - Additionaly: 4x carbon fiber propellers
+- **Batteries:** 1x (+ spare) "Turnigy Multistar High Capacity 4S 5200mAh LiPo"
+    - These batteries are pretty heavy (approx. 400g) and may be changed to
+      lighter ones
+
+***TODO:*** Add images (and links)
 
 ### Choosing the drone's brain
 
-ArduPilot is compatible with many different flight controllers, e.g. ...
-*<span style="color: orange">More information / Better explanations coming soon.</span>*
+As we are using ArduPilot as our autopilot software, we can choose one of many
+flight controllers, that can run ArduPilot. There are many different options,
+ranging from basic ones (low-cost, few redundancy, ...) to high-end ones
+(more expensive, redundant sensors, internal vibration dampening, ...).
 
-Here is a list of different configurations:
+***TODO:*** Remove list, clearly show the selected hardware and explain why other hardware was not chosen.
 
 #### Configuration 1
 
