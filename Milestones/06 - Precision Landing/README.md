@@ -36,6 +36,10 @@ python3 create_aruco_markers.py
 **executing the script or else it will create a new output folder for the**
 **images.**
 
+Here is a collection of some markers that are created using the script:
+
+<img src="development/images/ArUco%20markers/4X4_50/some_ArUco_4X4_50_markers.png" alt="Some ArUco markers" style="max-width:500px;"/>
+
 ## 2. Detect ArUco markers
 
 To detect ArUco markers, I am using OpenCV, since it is already supported.
@@ -53,6 +57,9 @@ cd development/scripts
 python3 detect_aruco_markers_basic.py
 ```
 
+<img src="development/images/Demos/detect_aruco_markers_basic - 01.png" alt="Demo of basic marker detection" style="max-width:500px;"/>
+<img src="development/images/Demos/detect_aruco_markers_basic - 02.png" alt="Demo of basic marker detection" style="max-width:500px;"/>
+
 ### Adaptive Resolution
 
 The higher the image resolution, the lower the FPS, because computational effort
@@ -69,3 +76,5 @@ python3 detect_aruco_markers_adaptive_resolution.py
 
 This script now also displays the FPS and the size of the smallest side of each
 marker currently detected.
+
+<img src="development/images/Demos/detect_aruco_markers_adaptive_resolution.png" alt="Demo of marker detection with adaptive resolution" style="max-width:500px;"/>

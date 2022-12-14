@@ -11,7 +11,11 @@ import cv2
 import sys
 
 
-ARUCO_TYPE = 'DICT_5X5_100'
+ARUCO_TYPE = 'DICT_4X4_50'
+
+IMAGE_WIDTH = 1000
+
+VIDEO_SRC = '/dev/video2'
 
 
 # Define names of each possible ArUco tag OpenCV supports
@@ -52,7 +56,7 @@ arucoParams = cv2.aruco.DetectorParameters_create()
 
 # Initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
-vs = VideoStream(src=0).start()
+vs = VideoStream(src=VIDEO_SRC).start()
 time.sleep(2.0)
 
 # Loop over the frames from the video stream
@@ -60,7 +64,7 @@ while True:
 	# Grab the frame from the threaded video stream and resize it to have a
     # maximum width of 1000 pixels
 	frame = vs.read()
-	frame = imutils.resize(frame, width=4000)
+	frame = imutils.resize(frame, width=IMAGE_WIDTH)
 	# Detect ArUco markers in the input frame
 	(corners, ids, rejected) = cv2.aruco.detectMarkers(frame, arucoDict,
                                                        parameters=arucoParams)
