@@ -38,7 +38,7 @@ ARUCO_DICT = {
 
 # verify that the supplied ArUCo tag exists and is supported by OpenCV
 if ARUCO_DICT.get(ARUCO_TYPE, None) is None:
-    print(f'[INFO] ArUCo tag of "{ARUCO_TYPE}" is not supported')
+    print(f'[INFO] ArUCo tag of "{ARUCO_TYPE}" is not supported.')
     sys.exit(0)
 
 # Load the ArUCo dictionary
