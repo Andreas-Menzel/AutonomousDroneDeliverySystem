@@ -2,9 +2,43 @@
 
 Mechanism to securely attach / detach a cargo container to / from the drone.
 
-You can find the 3D models of this mechanism in `./3d-models`.
+Overview of the assembled mechanism:
 
-The OpenSCAD files are located in `./3d-models/openscad files`.
-The stl files are located in `./3d-models/stl files`.
+<img src="images/assembled_preview.gif" alt="Assembled Preview" style="max-width:500px;"/>
 
-Execute `./3d-models/export.sh` if any of the OpenSCAD files was changed.
+Directory tree:
+
+```
+.
+├── 3d-models
+│   ├── openscad files
+│   └── stl files
+├── images
+└── scripts
+```
+
+## Export stl-files
+
+To create the stl-files, execute the following command and make sure that you
+can export from OpenSCAD using the command line.
+
+```
+cd scripts
+./export_stl_files.sh
+```
+
+**Make sure that you are in the `scripts` directory when executing the script**
+**or else it may create a new folder.**
+
+## Create Preview Images
+
+To create preview images, execute the following command and make sure that you
+can export from OpenSCAD using the command line.
+
+```
+cd scripts
+./create_assembled_preview.sh
+```
+
+**Make sure that you are in the `scripts` directory when executing the scripts**
+**or else it may create a new folder.**
