@@ -14,22 +14,32 @@
 include <dimensions.scad>
 include <container_part.scad>
 include <drone_part.scad>
+include <locking_pin.scad>
+include <servo_mount.scad>
 
 
-cut = true;
-vertical_gap = 0.2;
+cut = false;
+vertical_gap = 150;
 
 difference() {
     union() {
         container_part();
 
-        translate([0, 0, contact_plate_wall_thickness + vertical_gap])
+        translate([0, 0, contact_plate_wall_thickness + vertical_gap]) {
             drone_part();
+
+            translate([(contact_plate_width / 2) - servo_slot_wall_thickness - (servo_body_width / 2),
+                       0,
+                       0])
+                servo_mount();
+        }
     }
 
     // Cut model in half, so that one can see that everything fits.
     if(cut) {
-        translate([100, 0, 0])
+        translate([0, 70, 0])
             cube([1000, 1000, 1000]);
     }
 }
+
+//translate([-100, 0, 0]) locking_pin();
