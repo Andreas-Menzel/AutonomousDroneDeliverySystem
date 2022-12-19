@@ -86,7 +86,8 @@ Execute the following command to get the camera calibration values.
 
 ```
 cd "development/scripts/03 - Calibrate camera"
-python3 camera_calibration_basic.py
+python3 camera_calibration.py
 ```
 
-Press "s" to take a snapshot. Press "q" to quit scanning and start calculating.
+Press "c" to quit taking snapshots and start calculating. The script will then
+save the results in a json-file.
