@@ -12,8 +12,9 @@ development for the cargo pick-up and drop-off routines.
 
 1. Create ArUco markers
 2. Detect ArUco markers
-3. Get relative position of ArUco marker / camera
-4. Landing
+3. Camera Calibration
+4. Get relative position of ArUco marker / camera
+5. Landing
 
 ## 1. Create ArUco markers
 
@@ -28,7 +29,7 @@ The following will create ArUco markers of type `4X4_50` and save them to
 `./development/images/ArUco markers/4X4_50/`:
 
 ```
-cd development/scripts
+cd "development/scripts/01 - Create ArUco markers"
 python3 create_aruco_markers.py
 ```
 
@@ -53,7 +54,7 @@ for the first tests and to learn something about OpenCV and how the ArUco marker
 detection works.
 
 ```
-cd development/scripts
+cd "development/scripts/02 - Detect ArUco markers"
 python3 detect_aruco_markers_basic.py
 ```
 
@@ -70,7 +71,7 @@ Adaptively reducing the image resolution seems like the way to go. For this
 reason I created this script, a modified version of the previous one.
 
 ```
-cd development/scripts
+cd "development/scripts/02 - Detect ArUco markers"
 python3 detect_aruco_markers_adaptive_resolution.py
 ```
 
@@ -78,3 +79,14 @@ This script now also displays the FPS and the size of the smallest side of each
 marker currently detected.
 
 <img src="development/images/Demos/detect_aruco_markers_adaptive_resolution.png" alt="Demo of marker detection with adaptive resolution" style="max-width:500px;"/>
+
+## 3. Camera Calibration
+
+Execute the following command to get the camera calibration values.
+
+```
+cd "development/scripts/03 - Calibrate camera"
+python3 camera_calibration_basic.py
+```
+
+Press "s" to take a snapshot. Press "q" to quit scanning and start calculating.
