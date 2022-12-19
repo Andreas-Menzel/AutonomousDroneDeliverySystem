@@ -56,10 +56,20 @@ module _drone_part__locking_mechanism_lock() {
                       wall_thickness, height]);
             
             // Wall - rest
-            translate([2*wall_thickness + key_thickness + lock_key_clearance, length / 2, (height - wall_thickness) / 2])
+            translate([2*wall_thickness + key_thickness + lock_key_clearance,
+                       length / 2,
+                       (height - wall_thickness) / 2]) {
                 rotate([0, 90, 0])
-                cylinder(d=pin_diameter + pin_clearance + 2*rest_wall_thickness,
-                         h=rest_length);
+                    cylinder(d=pin_diameter + pin_clearance + 2*rest_wall_thickness,
+                            h=rest_length);
+                
+                translate([0,
+                           -((pin_diameter + pin_clearance + 2*rest_wall_thickness) / 2),
+                           -((pin_diameter + pin_clearance + 2*rest_wall_thickness) / 2)])
+                    cube([rest_length,
+                          pin_diameter + pin_clearance + 2*rest_wall_thickness,
+                          (pin_diameter + pin_clearance + 2*rest_wall_thickness) / 2]);
+            }
         }
 
         // Hole for the pin
@@ -231,7 +241,7 @@ module drone_part__servo_mount_slot() {
     }
 }
 
-
+drone_part();
 module drone_part() {
     // Short versions of the variables needed
     lm_pin_diameter = locking_mechanism_pin_diameter;
