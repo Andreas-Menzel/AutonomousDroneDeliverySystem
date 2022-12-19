@@ -32,7 +32,7 @@ alignment_pin_offset = 5;
 alignment_pin_align_clearance = 7;
 
 alignment_pin_width_base = contact_plate_width - 2*alignment_pin_offset;
-alignment_pin_length_base = 25;
+alignment_pin_length_base = 17;
 
 alignment_pin_width_top = alignment_pin_width_base - 2*alignment_pin_align_clearance;
 alignment_pin_length_top = alignment_pin_length_base - 2*alignment_pin_align_clearance;
@@ -46,6 +46,9 @@ alignment_pin_slot_plane_wall_thickness = 2.5;
 
 // Half of the clearance will be added to each part (container / drone)
 alignment_pin_clearance = 0.25;
+
+// Center cutout of the alignment pin. For weight reduction.
+alignment_pin_center_cutout_width = contact_plate_width - 2*alignment_pin_offset - (alignment_pin_width_base - alignment_pin_width_top) - 2*20;
 
 ////////////////////////////// Locking Mechanism ///////////////////////////////
 locking_mechanism_pin_wire_diamter = 1;
