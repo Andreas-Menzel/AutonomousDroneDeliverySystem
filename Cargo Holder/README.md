@@ -37,6 +37,13 @@ can export from OpenSCAD using the command line.
 
 ```
 cd scripts
+./create_preview_images.sh
+```
+
+A separate script exists to create the animated gif of the assembled model:
+
+```
+cd scripts
 ./create_assembled_preview.sh
 ```
 
