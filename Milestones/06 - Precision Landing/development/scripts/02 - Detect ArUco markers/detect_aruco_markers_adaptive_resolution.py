@@ -25,8 +25,8 @@ preferred_marker_size = 150
 image_width_min = 50
 image_width_max = 2500
 
-#video_source = '/dev/video0'
-video_source = '/dev/video2'
+video_source = '/dev/video0'
+#video_source = '/dev/video2'
 
 ################################################################################
 ######################## DO NOT CHANGE THESE VARIABLES #########################
@@ -109,6 +109,8 @@ while True:
     # Grab the frame from the threaded video stream and resize it
     frame = vs.read()
     frame = imutils.resize(frame, width=image_width)
+    # Convert to grayscale: improves efficiency
+    #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect ArUco markers in the input frame
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frame, arucoDict,
