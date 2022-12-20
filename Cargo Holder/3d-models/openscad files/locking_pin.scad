@@ -21,25 +21,31 @@ module locking_pin() {
     key_thickness = locking_mechanism_key_thickness;
     lock_key_clearance = locking_mechanism_lock_key_clearance;
 
-    length = 2*lock_wall_thickness + key_thickness + lock_key_clearance;
+    slide_length = 2*lock_wall_thickness + key_thickness + lock_key_clearance;
 
     wire_diameter = locking_mechanism_pin_wire_diamter;
-    connection_outline = locking_mechanism_pin_wire_connection_outline;
+    connection_length = locking_mechanism_pin_connection_length;
     
 
-    union() {
+    difference() {
         // Main pin
-        cylinder(d=pin_diameter, h=length);
+        cylinder(d=pin_diameter, h=slide_length + connection_length);
 
-        // Connector
-        //cube([wire_diameter]);
+        translate([-pin_diameter / 2, 0, connection_length / 2])
+            rotate([0, 90, 0])
+            cylinder(d=wire_diameter, h=pin_diameter);
+        translate([-pin_diameter / 2, 0, 0])
+            rotate([0, 90, 0])
+            cylinder(d=wire_diameter, h=pin_diameter);
+        
+        cylinder(d=pin_diameter / 2 ,h=wire_diameter);
     }
 }
 
 
 // When executing the `export.sh` script, this variable will autimatically be
 // set to true. The default value should be false.
-export = false;
+export = true;
 if(export) {
     locking_pin();
 }

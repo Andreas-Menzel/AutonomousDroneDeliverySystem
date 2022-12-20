@@ -52,7 +52,7 @@ alignment_pin_center_cutout_width = contact_plate_width - 2*alignment_pin_offset
 
 ////////////////////////////// Locking Mechanism ///////////////////////////////
 locking_mechanism_pin_wire_diamter = 1;
-locking_mechanism_pin_wire_connection_outline = 2;
+locking_mechanism_pin_connection_length = 7;
 locking_mechanism_pin_diameter = 10;
 locking_mechanism_pin_clearance_lock = 0.5;
 locking_mechanism_pin_clearance_key = 2;
