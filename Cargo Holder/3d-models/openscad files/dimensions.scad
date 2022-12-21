@@ -20,6 +20,7 @@
 contact_plate_width = 150;
 contact_plate_length = 150;
 contact_plate_wall_thickness = 2;
+contact_plate_center_cutout_diameter = 65;
 
 //////////////////////////////// Alignment Pin /////////////////////////////////
 // Pins used to align the cargo container relative to the drone. This mechanism
@@ -29,7 +30,7 @@ contact_plate_wall_thickness = 2;
 alignment_pin_offset = 5;
 // Clearance (on all sides) to allow for slightly misaligned drone / cargo
 // container
-alignment_pin_align_clearance = 7;
+alignment_pin_align_clearance = 6;
 
 alignment_pin_width_base = contact_plate_width - 2*alignment_pin_offset;
 alignment_pin_length_base = 17;
@@ -51,8 +52,10 @@ alignment_pin_clearance = 0.25;
 alignment_pin_center_cutout_width = contact_plate_width - 2*alignment_pin_offset - (alignment_pin_width_base - alignment_pin_width_top) - 2*20;
 
 ////////////////////////////// Locking Mechanism ///////////////////////////////
-locking_mechanism_pin_wire_diamter = 1;
+locking_mechanism_pin_wire_diamter = 1.5;
 locking_mechanism_pin_connection_length = 7;
+locking_mechanism_pin_tip_length = 7;
+locking_mechanism_pin_tip_diameter = 2;
 locking_mechanism_pin_diameter = 10;
 locking_mechanism_pin_clearance_lock = 0.5;
 locking_mechanism_pin_clearance_key = 2;
@@ -66,12 +69,12 @@ locking_mechanism_key_pin_outline = 4; // Wall thickness around the hole of the
 
 // The lock part is located on the drone
 locking_mechanism_lock_offset = alignment_pin_offset;
-locking_mechanism_lock_wall_thickness = 3;
-locking_mechanism_lock_rest_length = locking_mechanism_lock_key_clearance + locking_mechanism_key_thickness;
+locking_mechanism_lock_wall_thickness = 2;
+locking_mechanism_lock_rest_length = (locking_mechanism_lock_key_clearance + locking_mechanism_key_thickness) * 0.85;
 locking_mechanism_lock_rest_wall_thickness = 2;
 
 ///////////////////////////////// Servo Mount //////////////////////////////////
-servo_slot_wall_thickness = 2;
+servo_slot_wall_thickness = 1;
 servo_slot_height = 10;
 
 servo_mount_width = 5;
@@ -92,3 +95,6 @@ servo_height_offset = 11;
 // Wall thickness of the slot on the drone part in which the servo mount will be
 // glued to.
 servo_mount_drone_part_wall_thickness = 3;
+
+///////////////////////////////////// Logo /////////////////////////////////////
+logo_depth_contact_plate = 1;

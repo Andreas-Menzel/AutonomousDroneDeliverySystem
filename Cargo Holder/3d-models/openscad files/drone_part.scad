@@ -65,10 +65,10 @@ module _drone_part__locking_mechanism_lock() {
                 
                 translate([0,
                            -((pin_diameter + pin_clearance + 2*rest_wall_thickness) / 2),
-                           -((pin_diameter + pin_clearance + 2*rest_wall_thickness) / 2)])
+                           -((height - wall_thickness) / 2)])
                     cube([rest_length,
                           pin_diameter + pin_clearance + 2*rest_wall_thickness,
-                          (pin_diameter + pin_clearance + 2*rest_wall_thickness) / 2]);
+                          (height - wall_thickness) / 2]);
             }
         }
 
@@ -184,6 +184,7 @@ module _drone_part__contact_plate() {
     width = contact_plate_width;
     length = contact_plate_length;
     wall_thickness = contact_plate_wall_thickness;
+    center_cutout_diameter = contact_plate_center_cutout_diameter;
 
     pin_diameter = locking_mechanism_pin_diameter;
     pin_clearance_key = locking_mechanism_pin_clearance_key;
@@ -199,6 +200,10 @@ module _drone_part__contact_plate() {
 
     difference() {
         cube([width, length, wall_thickness]);
+
+        // cutout: center
+        translate([width / 2, length / 2, 0])
+            cylinder(d=center_cutout_diameter, h=wall_thickness);
 
         //cutout: lock - left
         translate([locking_mechanism_lock_offset + wall_thickness_lock,
@@ -228,7 +233,8 @@ module drone_part__servo_mount_slot() {
     slot_wall_thickness = servo_mount_drone_part_wall_thickness;
 
     slot_width = servo_body_width + servo_slot_wall_thickness;
-    slot_length = alignment_pin_length_top / 2;
+    slot_length = alignment_pin_length_top / 2 + 2; // TODO: Why +2? Should not
+                                                    //       make sense...
     slot_height = servo_assembly_thickness;
 
     difference() {
@@ -241,7 +247,7 @@ module drone_part__servo_mount_slot() {
     }
 }
 
-drone_part();
+
 module drone_part() {
     // Short versions of the variables needed
     lm_pin_diameter = locking_mechanism_pin_diameter;
@@ -254,33 +260,39 @@ module drone_part() {
 
     cp_width = contact_plate_width;
 
-    union() {
-        _drone_part__contact_plate();
+    difference() {
+        union() {
+            _drone_part__contact_plate();
 
-        translate([alignment_pin_offset, alignment_pin_offset, 0])
-            _drone_part__alignment_pin_slot();
-        translate([alignment_pin_offset, contact_plate_length - alignment_pin_length_base - alignment_pin_offset, 0])
-            _drone_part__alignment_pin_slot();
-        
-        translate([contact_plate_width / 2, (contact_plate_length / 2) - (lm_length / 2), 0])
-            _drone_part__locking_mechanism();
-        
-        translate([(cp_width / 2) - (servo_body_width / 2) - servo_slot_wall_thickness,
-                    0,
-                    alignment_pin_height + alignment_pin_slot_wall_thickness]) {
+            translate([alignment_pin_offset, alignment_pin_offset, 0])
+                _drone_part__alignment_pin_slot();
+            translate([alignment_pin_offset, contact_plate_length - alignment_pin_length_base - alignment_pin_offset, 0])
+                _drone_part__alignment_pin_slot();
             
-            translate([0,
-                       alignment_pin_offset + ((alignment_pin_length_base - alignment_pin_length_top) / 2) + (alignment_pin_length_top / 2),
-                       0])
-                drone_part__servo_mount_slot();
+            translate([contact_plate_width / 2, (contact_plate_length / 2) - (lm_length / 2), 0])
+                _drone_part__locking_mechanism();
             
-            translate([0,
-                       cp_width - (alignment_pin_offset + ((alignment_pin_length_base - alignment_pin_length_top) / 2) + (alignment_pin_length_top / 2)),
-                       0])
-                translate([servo_body_width + servo_slot_wall_thickness, 0, 0])
-                rotate([0, 0, 180])
-                drone_part__servo_mount_slot();
+            translate([(cp_width / 2) - (servo_body_width / 2) - servo_slot_wall_thickness,
+                        0,
+                        alignment_pin_height + alignment_pin_slot_wall_thickness]) {
+                
+                translate([0,
+                        alignment_pin_offset + ((alignment_pin_length_base - alignment_pin_length_top) / 2) + (alignment_pin_length_top / 2),
+                        0])
+                    drone_part__servo_mount_slot();
+                
+                translate([0,
+                        cp_width - (alignment_pin_offset + ((alignment_pin_length_base - alignment_pin_length_top) / 2) + (alignment_pin_length_top / 2)),
+                        0])
+                    translate([servo_body_width + servo_slot_wall_thickness, 0, 0])
+                    rotate([0, 0, 180])
+                    drone_part__servo_mount_slot();
+            }
         }
+
+        translate([15, 30, contact_plate_wall_thickness - logo_depth_contact_plate])
+            linear_extrude(logo_depth_contact_plate)
+            import("./logo.svg");
     }
 }
 

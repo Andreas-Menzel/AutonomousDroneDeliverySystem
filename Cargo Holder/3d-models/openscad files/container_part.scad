@@ -88,24 +88,30 @@ module _container_part__contact_plate() {
 
 
 module container_part() {
-    union() {
-        _container_part__contact_plate();
+    difference() {
+        union() {
+            _container_part__contact_plate();
 
-        translate([alignment_pin_offset, alignment_pin_offset, contact_plate_wall_thickness])
-            _container_part__alignment_pin();
-        translate([alignment_pin_offset, contact_plate_length - alignment_pin_length_base - alignment_pin_offset, contact_plate_wall_thickness])
-            _container_part__alignment_pin();
-        
-        key_length = locking_mechanism_pin_diameter + locking_mechanism_pin_clearance_key + 2*locking_mechanism_key_pin_outline;
-        offset = locking_mechanism_lock_offset + locking_mechanism_lock_wall_thickness + locking_mechanism_lock_key_clearance / 2;
-        translate([offset,
-                    (contact_plate_length / 2) - key_length / 2,
-                    contact_plate_wall_thickness])
-            _container_part__key();
-        translate([contact_plate_width - offset - locking_mechanism_key_thickness,
-                    (contact_plate_length / 2) - key_length / 2,
-                    contact_plate_wall_thickness])
-            _container_part__key();
+            translate([alignment_pin_offset, alignment_pin_offset, contact_plate_wall_thickness])
+                _container_part__alignment_pin();
+            translate([alignment_pin_offset, contact_plate_length - alignment_pin_length_base - alignment_pin_offset, contact_plate_wall_thickness])
+                _container_part__alignment_pin();
+            
+            key_length = locking_mechanism_pin_diameter + locking_mechanism_pin_clearance_key + 2*locking_mechanism_key_pin_outline;
+            offset = locking_mechanism_lock_offset + locking_mechanism_lock_wall_thickness + locking_mechanism_lock_key_clearance / 2;
+            translate([offset,
+                        (contact_plate_length / 2) - key_length / 2,
+                        contact_plate_wall_thickness])
+                _container_part__key();
+            translate([contact_plate_width - offset - locking_mechanism_key_thickness,
+                        (contact_plate_length / 2) - key_length / 2,
+                        contact_plate_wall_thickness])
+                _container_part__key();
+        }
+
+        translate([(contact_plate_width / 2) - (24 / 2), (contact_plate_length / 2) - (24 / 2), contact_plate_wall_thickness - logo_depth_contact_plate])
+            linear_extrude(logo_depth_contact_plate)
+            import("./logo.svg");
     }
 }
 
