@@ -1,19 +1,27 @@
 import numpy as np
 import cv2
 import imutils
-from imutils.video import VideoStream
 import time
 import math
 import json
+
+from AdvancedVideoStream import AdvancedVideoStream
+
 
 ################################################################################
 ############################ CHANGE THESE VARIABLES ############################
 ################################################################################
 
-chessboard_size = (10, 7)
+CHESSBOARD_SIZE = (10, 7)
 
-video_source = '/dev/video2'
-image_resolution = (1280, 720)
+# Video source. Either a webcam (/dev/videoX) or a file (e.g. video.mp4)
+VIDEO_SRC = '/dev/video3'
+#VIDEO_SRC = 'video.mp4'
+
+# Maximum fps of the livestream | fps of the video
+VIDEO_FPS = 30
+
+IMG_RESOLUTION = (1280, 720)
 
 ################################################################################
 ######################## DO NOT CHANGE THESE VARIABLES #########################
@@ -23,28 +31,31 @@ image_resolution = (1280, 720)
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
 # Prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
-objp = np.zeros((chessboard_size[0]*chessboard_size[1],3), np.float32)
-objp[:,:2] = np.mgrid[0:chessboard_size[0],0:chessboard_size[1]].T.reshape(-1,2)
+objp = np.zeros((CHESSBOARD_SIZE[0]*CHESSBOARD_SIZE[1],3), np.float32)
+objp[:,:2] = np.mgrid[0:CHESSBOARD_SIZE[0],0:CHESSBOARD_SIZE[1]].T.reshape(-1,2)
 
 # Arrays to store object points and image points from all the images.
 objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane.
 
-
-vs = VideoStream(src=video_source).start()
-time.sleep(2.0)
+# Initialize the video stream or file
+print("[INFO] starting video stream or file...")
+vs = AdvancedVideoStream(VIDEO_SRC, fps=VIDEO_FPS)
+vs.start()
 
 time_next_snapshot = time.time() + 3
 while True:
-    frame = vs.read()
-    frame = imutils.resize(frame, width=image_resolution[0], height=image_resolution[1])
+    key = cv2.waitKey(1) & 0xFF
+
+    frame = vs.get_frame()
+    frame = imutils.resize(frame, width=IMG_RESOLUTION[0], height=IMG_RESOLUTION[1])
     
     # Take next snapshot?
-    if time.time() >= time_next_snapshot:
+    if time.time() >= time_next_snapshot or key == ord('s'):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # Find the chess board corners
-        ret, corners = cv2.findChessboardCorners(gray, (chessboard_size[0], chessboard_size[1]), None)
+        ret, corners = cv2.findChessboardCorners(gray, (CHESSBOARD_SIZE[0], CHESSBOARD_SIZE[1]), None)
         
         # If found, add object points, image points (after refining them)
         if ret == True:
@@ -53,7 +64,7 @@ while True:
             imgpoints.append(corners2)
 
             # Draw and display the corners
-            cv2.drawChessboardCorners(frame, (chessboard_size[0], chessboard_size[1]), corners2, ret)
+            cv2.drawChessboardCorners(frame, (CHESSBOARD_SIZE[0], CHESSBOARD_SIZE[1]), corners2, ret)
             cv2.imshow('Frame', frame)
             cv2.waitKey(500)
         
@@ -63,23 +74,27 @@ while True:
                 (30, 50),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
+    cv2.putText(frame, 'Press "s" to take a snapshot.',
+                (30, 100),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1, (0, 255, 0), 2)
 
     cv2.putText(frame, f'Next snapshot in {math.ceil(time_next_snapshot - time.time())} second(s)...',
-                (30, 150),
+                (30, 200),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
     cv2.putText(frame, f'Valid snapshots taken: {len(objpoints)}',
-                (30, 200),
+                (30, 250),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
     cv2.imshow("Frame", frame)
 
     # if the `c` key was pressed, break from the loop
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord("c"):
+    if key == ord('c'):
         break
 
 cv2.destroyAllWindows()
+vs.stop()
 
 if len(objpoints) > 0:
     if len(objpoints) < 5:
@@ -91,7 +106,12 @@ if len(objpoints) > 0:
         'matrix': mtx.tolist(),
         'distortion': dist.tolist()
     }
-    with open(f'camera_calibration_{image_resolution[0]}x{image_resolution[1]}.json', 'w') as file:
+    with open('camera_calibration_matrix.npy', 'wb') as file:
+        np.save(file, mtx)
+    with open('camera_calibration_distortion.npy', 'wb') as file:
+        np.save(file, dist)
+
+    with open(f'camera_calibration_{IMG_RESOLUTION[0]}x{IMG_RESOLUTION[1]}.json', 'w') as file:
         file.write(json.dumps(camera_calibration_data))
         print(f'Matrix:\n{mtx}')
         print(f'Distortion:\n{dist}')

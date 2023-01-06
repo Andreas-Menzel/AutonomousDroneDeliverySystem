@@ -1,9 +1,11 @@
-from imutils.video import VideoStream
 import imutils
 import time
 import cv2
 import sys
 from scipy.spatial import distance
+
+from AdvancedVideoStream import AdvancedVideoStream
+
 
 ################################################################################
 ############################ CHANGE THESE VARIABLES ############################
@@ -15,25 +17,29 @@ ARUCO_TYPE = 'DICT_4X4_50'
 # Preferred size (in px) of a marker. Should be a value so that the markers
 # can be easily detected, but not too high in order to reduce the image size and
 # processing required to find the markers.
-preferred_marker_size = 150
+PREFERRED_MARKER_SIZE = 75
 
 # Width of the image (in px). Should not be too high (max: camera resolution)
 # in order to reduce the processing required to find a marker. Min-size is not
 # too important, unless there is a very big and a very small maker and both
 # should be detected (only important if the small marker comes into view after
 # the big marker).
-image_width_min = 50
-image_width_max = 2500
+IMG_WIDTH_MIN = 50
+IMG_WIDTH_MAX = 2500
 
-video_source = '/dev/video0'
-#video_source = '/dev/video2'
+# Video source. Either a webcam (/dev/videoX) or a file (e.g. video.mp4)
+VIDEO_SRC = '/dev/video3'
+#VIDEO_SRC = './video.mp4'
+
+# Maximum fps of the livestream | fps of the video
+VIDEO_FPS = 30
+
+# With of the preview image (in px)
+IMG_DISPLAY_WIDTH = 1000
 
 ################################################################################
 ######################## DO NOT CHANGE THESE VARIABLES #########################
 ################################################################################
-
-# With of the image (in px) when it is shown
-image_display_width = 1000
 
 ARUCO_DICT = {
     "DICT_4X4_50": cv2.aruco.DICT_4X4_50,
@@ -59,12 +65,10 @@ ARUCO_DICT = {
     "DICT_APRILTAG_36h11": cv2.aruco.DICT_APRILTAG_36h11
 }
 
-
 # Sizes of all markers currently detected
 marker_sizes = []
 # Current image width
-image_width = image_width_max
-
+image_width = IMG_WIDTH_MAX
 
 # Verify that the supplied ArUCo tag exists and is supported by OpenCV
 if ARUCO_DICT.get(ARUCO_TYPE, None) is None:
@@ -76,16 +80,20 @@ print(f"[INFO] detecting '{ARUCO_TYPE}' tags...")
 arucoDict = cv2.aruco.Dictionary_get(ARUCO_DICT[ARUCO_TYPE])
 arucoParams = cv2.aruco.DetectorParameters_create()
 
-# Initialize the video stream and allow the camera sensor to warm up
-print("[INFO] starting video stream...")
-vs = VideoStream(src=video_source).start()
-time.sleep(2.0)
+# Initialize the video stream or file
+print("[INFO] starting video stream or file...")
+vs = AdvancedVideoStream(VIDEO_SRC, fps=VIDEO_FPS)
+vs.start()
 
-time_last_frame = round(time.time()*1000) - 1000
+time_last_frame = round(time.time()*1000) - 1000 # actually the 5th latest frame
 frame_rate = 1 # will be calculated and updated
 frames_counter = 0
 # Loop over the frames from the video stream
 while True:
+    if not vs.is_active():
+        print('Video stream is not active.')
+        break
+
     smallest_marker_size = 0
     if len(marker_sizes) > 0:
         smallest_marker_size = min(marker_sizes)
@@ -95,20 +103,21 @@ while True:
 
     if smallest_marker_size == 0:
         # Set max-resolution
-        image_width = image_width_max
+        image_width = IMG_WIDTH_MAX
     else:
         # Scale image
-        scaling_factor = (preferred_marker_size / 2) / smallest_marker_size
+        scaling_factor = (PREFERRED_MARKER_SIZE) / smallest_marker_size
         
         image_width = int(image_width * scaling_factor)
-        if image_width > image_width_max:
-            image_width = image_width_max
-        elif image_width < image_width_min:
-            image_width = image_width_min
+        if image_width > IMG_WIDTH_MAX:
+            image_width = IMG_WIDTH_MAX
+        elif image_width < IMG_WIDTH_MIN:
+            image_width = IMG_WIDTH_MIN
 
     # Grab the frame from the threaded video stream and resize it
-    frame = vs.read()
+    frame = vs.get_frame()
     frame = imutils.resize(frame, width=image_width)
+
     # Convert to grayscale: improves efficiency
     #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -172,17 +181,21 @@ while True:
         time_last_frame = round(time.time()*1000)
 
     # Show the output frame
-    frame = imutils.resize(frame, width=image_display_width)
+    frame = imutils.resize(frame, width=IMG_DISPLAY_WIDTH)
 
-    cv2.putText(frame, f'FPS: {round(frame_rate, 2)}', (30, 50), cv2.FONT_HERSHEY_SIMPLEX,
+    # Show help message
+    cv2.putText(frame, 'Press "q" to quit.', (30, 50),
+				cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+    cv2.putText(frame, f'FPS: {round(frame_rate, 2)}', (30, 100), cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
-    cv2.putText(frame, int(frame_rate / 2)*'#', (30, 100), cv2.FONT_HERSHEY_SIMPLEX,
+    cv2.putText(frame, int(frame_rate / 2)*'#', (30, 150), cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
 
-    cv2.putText(frame, f'Smallest marker size: {round(smallest_marker_size)}px', (30, 200), cv2.FONT_HERSHEY_SIMPLEX,
+    cv2.putText(frame, f'Smallest marker size: {round(smallest_marker_size)}px', (30, 250), cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
     marker_sizes_str = 'px, '.join([ str(elem) for elem in sorted(marker_sizes) ])
-    cv2.putText(frame, f'All marker sizes: {marker_sizes_str}px', (30, 250), cv2.FONT_HERSHEY_SIMPLEX,
+    cv2.putText(frame, f'All marker sizes: {marker_sizes_str}px', (30, 300), cv2.FONT_HERSHEY_SIMPLEX,
                 1, (0, 255, 0), 2)
 
     cv2.imshow("Frame", frame)
@@ -194,3 +207,4 @@ while True:
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
+print(f'Total number of input frames: {vs.frames_count}')

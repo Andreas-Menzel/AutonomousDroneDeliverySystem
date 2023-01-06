@@ -3,13 +3,24 @@
 # Tutorial with the original version of this script:
 # https://pyimagesearch.com/2020/12/14/generating-aruco-markers-with-opencv-and-python/
 
+
 import numpy as np
 import cv2
 import sys
 from pathlib import Path
 
+
+################################################################################
+############################ CHANGE THESE VARIABLES ############################
+################################################################################
+
 ARUCO_TYPE = 'DICT_4X4_50'
+
 OUTPUT_IMG_SIZE = 300
+
+################################################################################
+######################## DO NOT CHANGE THESE VARIABLES #########################
+################################################################################
 
 
 ARUCO_DICT = {
