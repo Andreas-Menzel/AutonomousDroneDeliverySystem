@@ -19,8 +19,11 @@ from AdvancedVideoStream import AdvancedVideoStream
 ARUCO_TYPE = 'DICT_4X4_50'
 
 # Video source. Either a webcam (/dev/videoX) or a file (e.g. video.mp4)
-VIDEO_SRC = '/dev/video3'
-#VIDEO_SRC = 'video.mp4'
+#VIDEO_SRC = '/dev/video3'
+VIDEO_SRC = '../../videos/ArUco_sheet.mp4'
+#VIDEO_SRC = '../../videos/ArUco+ChArUco.mp4'
+#VIDEO_SRC = '../../videos/ArUco_cube.mp4'
+#VIDEO_SRC = '../../videos/ChArUco_board.mp4'
 
 # Maximum fps of the livestream | fps of the video
 VIDEO_FPS = 30

@@ -15,8 +15,8 @@ from AdvancedVideoStream import AdvancedVideoStream
 CHESSBOARD_SIZE = (10, 7)
 
 # Video source. Either a webcam (/dev/videoX) or a file (e.g. video.mp4)
-VIDEO_SRC = '/dev/video3'
-#VIDEO_SRC = 'video.mp4'
+#VIDEO_SRC = '/dev/video3'
+VIDEO_SRC = '../../videos/ChArUco_board.mp4'
 
 # Maximum fps of the livestream | fps of the video
 VIDEO_FPS = 30

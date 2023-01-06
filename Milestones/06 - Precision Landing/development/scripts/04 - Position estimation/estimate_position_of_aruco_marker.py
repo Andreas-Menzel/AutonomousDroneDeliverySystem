@@ -20,11 +20,14 @@ from AdvancedVideoStream import AdvancedVideoStream
 ARUCO_TYPE = 'DICT_4X4_50'
 
 # Size of the marker in real life (in cm; input unit = output unit)
-MARKER_SIZE = 16
+MARKER_SIZE = 4.5
 
 # Video source. Either a webcam (/dev/videoX) or a file (e.g. video.mp4)
-VIDEO_SRC = '/dev/video3'
-#VIDEO_SRC = 'video.mp4'
+#VIDEO_SRC = '/dev/video3'
+#VIDEO_SRC = '../../videos/ArUco_sheet.mp4' # ArUco markers not to scale
+#VIDEO_SRC = '../../videos/ArUco+ChArUco.mp4' # ArUco markers not to scale
+VIDEO_SRC = '../../videos/ArUco_cube.mp4'
+#VIDEO_SRC = '../../videos/ChArUco_board.mp4' # ArUco markers not to scale
 
 # Maximum fps of the livestream | fps of the video
 VIDEO_FPS = 30
