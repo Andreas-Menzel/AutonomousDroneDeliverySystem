@@ -46,6 +46,9 @@ There are two main approaches to getting the drone hardware for this project.
 1. Buy a pre-built, well tuned drone, or
 2. choose the individual components and build a "DIY-drone".
 
+A list of advantages and disadvantages for using a DJI drone vs. a DIY drone can
+be found in *DJI vs DIY.md*.
+
 Option 1 has the advantage of having a well tuned drone that should be able to
 fly simple (and advanced) manouvers out of the box. There are many different
 models to choose from, e.g. the DJI Phantom 4 Pro V2 (, DJI Inspire 2, ...).
