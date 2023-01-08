@@ -28,3 +28,5 @@ controller later.
 In this directory you can find images and 3d-files of the various prototypes
 with information on advantages and disadvantages. The latest and currently used
 version can be found in `/Cargo Holder/`.
+
+[Demo Video (YouTube)](https://youtu.be/va2LqXQMh1Y)
