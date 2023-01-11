@@ -1,12 +1,11 @@
-# 06 - Precision Landing
+# 04 - Cargo Station Detection and Positioning
 
 **Status:** work in progress
 
-**Main Goal:** Precisely land the drone on a marker.
+**Main Goal:** Detect a Cargo Station and position the drone centered above.
 
-After completing this milestone, the drone should be able to precisely land on
-a marker. This marker is later to be placed on the cargo station for further
-development for the cargo pick-up and drop-off routines.
+After completing this milestone, the drone should be able to detect a Cargo
+Station (e.g. via ArUco markers) and position itself directly above.
 
 **To achive the main goal, the following tasks have to be finished:**
 
@@ -14,7 +13,7 @@ development for the cargo pick-up and drop-off routines.
 2. Detect ArUco markers
 3. Camera Calibration
 4. Get relative position of ArUco marker / camera
-5. Landing
+5. Positioning the drone
 
 ## 1. Create ArUco markers
 

@@ -49,6 +49,15 @@ After compelting this milestone, the drone should have a cargo area and a
 mechanism to securely attach a cargo container to it. It is ok if the drone and
 the cargo container have to be "precisely" positioned (+- 5mm in each direction).
 
+### 04 - Cargo Station Detection and Positioning
+
+**Status:** work in progress
+
+**Main Goal:** Detect a Cargo Station and position the drone centered above.
+
+After completing this milestone, the drone should be able to detect a Cargo
+Station (e.g. via ArUco markers) and position itself directly above.
+
 ---
 
 **To be updated:**
@@ -71,32 +80,6 @@ the cargo container have to be "precisely" positioned (+- 5mm in each direction)
 through C-Chain.
 
 **The content of this milestone is still to be discussed.**
-
-### optional? - 05 - Drone Control via Raspberry Pi
-
-**Status:** *pending*
-
-**Main Goal:** Establish a communication link between the flight controller and
-the Raspberry Pi. Execute simple (flight) routines with the Raspberry Pi.
-
-After completing this milestone, the Raspberry Pi should be able to send (basic)
-commands to the flight controller (and read back the results). The drone should
-be controlled, so that it ...
-
-1. can be (dis-)armed,
-2. lifts off,
-3. flies left to right and
-4. flies to a gps-location
-
-### optional? - 06 - Precision Landing
-
-**Status:** *pending*
-
-**Main Goal:** Precisely land the drone on a marker.
-
-After completing this milestone, the drone should be able to precisely land on
-a marker. This marker is later to be placed on the cargo station for further
-development for the cargo pick-up and drop-off routines.
 
 ### optional? - 07 - Fully Autonomous Cargo Pick-Up and Drop-Off
 
