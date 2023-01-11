@@ -17,31 +17,21 @@ Keep in mind that the definitions of the milestones (main goal, tasks to
 complete, ...) can and will change as long as the milestone is still labeled as
 "work in progress".
 
-### 01 - Basic Drone Functionality
+### 01 - Get and Setup Drone Hardware
 
 **Status:** work in progress
 
-**Main Goal:** Create a "finished" hardware- & software setup for a basic flying
-drone.
+**Main goal:** Select a suitable drone and achieve manual control.
 
-After completing this milestone, the drone should be able to be controlled
-manually (lift-off, simple flying manouvres, landing) at nice weather with no
-wind or other difficulties.
+After completing this milestone, we should have a drone (pre-built or diy) that
+we can manually control. Simple autonomous flight modes (automatic takeoff and
+landing, waypoint missions) should also be possible.
 
-The drone does **not** have to use GPS to hold the current position or fly
-waypoint missions. Other autonomous manouvres like auto-lift-off or auto-landing
-are not part of this milestone.
+---
 
-### 02 - Basic Autonomous Flying
+**To be updated:**
 
-**Status:** *pending*
-
-**Main Goal:** Incorporate GPS module and fly small autonomous missions.
-
-After completing this milestone, the drone should be able to autonomously
-take off, hold a gps-location, fly small missions (follow gps-route) and land.
-
-The drone does **not** have to perform a precision landing.
+---
 
 ### 03 - Semi-automatic freight pick-up and drop-off
 
