@@ -27,27 +27,33 @@ After completing this milestone, we should have a drone (pre-built or diy) that
 we can manually control. Simple autonomous flight modes (automatic takeoff and
 landing, waypoint missions) should also be possible.
 
+### 02 - Basic Drone Control
+
+**Status:** *pending*
+
+**Main Goal:** Establish a connection between the drone and a self-written
+script / program.
+
+After completing this milestone, a self-written script / program should be able
+to control the drone: Flying from side to side, auto takeoff / landing and
+custom waypoint missions.
+
+### 03 - Cargo Holder
+
+**Status:** work in progress
+
+**Main Goal:** Create a mechanism that can securely attach a cargo container to
+the drone and safely release it.
+
+After compelting this milestone, the drone should have a cargo area and a
+mechanism to securely attach a cargo container to it. It is ok if the drone and
+the cargo container have to be "precisely" positioned (+- 5mm in each direction).
+
 ---
 
 **To be updated:**
 
 ---
-
-### 03 - Semi-automatic freight pick-up and drop-off
-
-**Status:** *pending*
-
-**Main Goal:** Create a mechanism that can securely attach a cargo container to
-the drone and safely release it.
-
-After compelting this milestone, the drone should have a "cargo area" and a
-mechanism to securely attach a cargo container to it. It is ok if the drone and
-the cargo container have to be precisely positioned (+- 5mm in each direction).
-The mechanism should allow for a mid-flight drop-off.
-
-The system can be an Arduino controlled prototype. The Arduino may be removed
-and the mechanism may be controlled via the Raspberry Pi or the flight
-controller later.
 
 ---
 
